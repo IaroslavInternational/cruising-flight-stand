@@ -48,6 +48,9 @@
             this.iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
             this.label18 = new System.Windows.Forms.Label();
             this.serialPort = new System.IO.Ports.SerialPort(this.components);
+            this.logBtn = new FontAwesome.Sharp.IconButton();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tenzo5_Data = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
@@ -59,6 +62,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.tenzo5_Data);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label4);
@@ -72,7 +77,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(24, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(299, 163);
+            this.panel1.Size = new System.Drawing.Size(299, 199);
             this.panel1.TabIndex = 0;
             // 
             // label3
@@ -245,17 +250,63 @@
             this.label18.TabIndex = 0;
             this.label18.Text = "Сопротивление";
             // 
+            // serialPort
+            // 
+            this.serialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort_DataReceived);
+            // 
+            // logBtn
+            // 
+            this.logBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(33)))), ((int)(((byte)(53)))));
+            this.logBtn.FlatAppearance.BorderSize = 0;
+            this.logBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.logBtn.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.logBtn.ForeColor = System.Drawing.Color.Gainsboro;
+            this.logBtn.IconChar = FontAwesome.Sharp.IconChar.File;
+            this.logBtn.IconColor = System.Drawing.Color.Gainsboro;
+            this.logBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.logBtn.IconSize = 36;
+            this.logBtn.Location = new System.Drawing.Point(473, 485);
+            this.logBtn.Name = "logBtn";
+            this.logBtn.Size = new System.Drawing.Size(170, 60);
+            this.logBtn.TabIndex = 26;
+            this.logBtn.Text = "Запись";
+            this.logBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.logBtn.UseVisualStyleBackColor = false;
+            this.logBtn.Click += new System.EventHandler(this.logBtn_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(93, 163);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(23, 25);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "5";
+            // 
+            // tenzo5_Data
+            // 
+            this.tenzo5_Data.AutoSize = true;
+            this.tenzo5_Data.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tenzo5_Data.Location = new System.Drawing.Point(114, 163);
+            this.tenzo5_Data.Name = "tenzo5_Data";
+            this.tenzo5_Data.Size = new System.Drawing.Size(79, 25);
+            this.tenzo5_Data.TabIndex = 23;
+            this.tenzo5_Data.Text = "5500 гр.";
+            // 
             // ManageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
             this.ClientSize = new System.Drawing.Size(668, 566);
+            this.Controls.Add(this.logBtn);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ManageForm";
             this.Text = "ManageForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManageForm_FormClosing);
             this.Load += new System.EventHandler(this.ManageForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -289,5 +340,8 @@
         private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
         private System.Windows.Forms.Label label18;
         private System.IO.Ports.SerialPort serialPort;
+        private FontAwesome.Sharp.IconButton logBtn;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label tenzo5_Data;
     }
 }
