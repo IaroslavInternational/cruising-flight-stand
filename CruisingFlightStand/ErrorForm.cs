@@ -10,16 +10,18 @@ using System.Windows.Forms;
 
 namespace CruisingFlightStand
 {
-    public partial class ManageForm : Form
+    public partial class ErrorForm : Form
     {
-        public ManageForm()
+        public ErrorForm(string error)
         {
             InitializeComponent();
+
+            errorTxt.Text = error;
         }
 
-        private void ManageForm_Load(object sender, EventArgs e)
+        private void closeBtn_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
     }
 }
