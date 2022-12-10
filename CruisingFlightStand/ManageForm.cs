@@ -35,7 +35,7 @@ namespace CruisingFlightStand
         private string logSplitter = "|";
 
         private const string gramm = "гр.";
-        private const string kpa = "кПа";
+        private const string kpa = "Па";
 
         DateTime dateTime;
 
@@ -94,7 +94,7 @@ namespace CruisingFlightStand
                     if (!serialPort.IsOpen)
                     {
                         serialPort.Open();
-                        serialPort.WriteLine("[Work mode]");
+                        serialPort.WriteLine("[Go]");
                     }
                     else
                     {
@@ -229,6 +229,7 @@ namespace CruisingFlightStand
                 DynamicLogString = 0;
 
                 logBtn.IconChar = FontAwesome.Sharp.IconChar.File;
+                logBtn.Text = "Запись";
 
                 dateTime = DateTime.Now;
 
@@ -245,6 +246,7 @@ namespace CruisingFlightStand
 
                 DynamicLog = true;
                 logBtn.IconChar = FontAwesome.Sharp.IconChar.FileAlt;
+                logBtn.Text = "Остановить";
 
                 AddLog("Динамичный лог " + dLog_num + "\n");
 
