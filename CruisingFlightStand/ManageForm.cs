@@ -21,6 +21,7 @@ namespace CruisingFlightStand
     {
         struct ConnectionData
         {
+            public double AirDensity;
             public string PortName;
             public int BaudRate;
         }
@@ -36,7 +37,9 @@ namespace CruisingFlightStand
 
         private const string gramm = "гр.";
         private const string kpa = "Па";
+        private const string kmh = "км/ч";
 
+        ConnectionData data;
         DateTime dateTime;
 
         private delegate void TenzoSetter(string val, int id);
@@ -81,7 +84,7 @@ namespace CruisingFlightStand
 
             if (IsFileExisting)
             {
-                ConnectionData data = JsonConvert.DeserializeObject<ConnectionData>(rawData);
+                data = JsonConvert.DeserializeObject<ConnectionData>(rawData);
 
                 serialPort.PortName = data.PortName;
                 serialPort.BaudRate = data.BaudRate;    
@@ -95,6 +98,9 @@ namespace CruisingFlightStand
                     {
                         serialPort.Open();
                         serialPort.WriteLine("[Go]");
+
+                        mainTimer.Enabled = true;
+                        mainTimer.Start();
                     }
                     else
                     {
@@ -125,7 +131,10 @@ namespace CruisingFlightStand
 
         private void SetNewPitoVal(string val)
         {
-            resist_Data.Text = val + " " + kpa;
+            double P = Convert.ToDouble(val);
+            double speed = Math.Pow((P / 1.8 * data.AirDensity), 0.5);
+
+            resist_Data.Text = speed + " " + kmh;
         }
 
         private void SetNewTenzoVal(string val, int id)
@@ -193,6 +202,7 @@ namespace CruisingFlightStand
                     {
                         // Установить значение
                         tenzo5_Data.Invoke(SetTenzo, value, 5);
+                        tenzo5_DataMain.Invoke(SetTenzo, value, 5);
                     }
                     else if (command == Commands.Pito.pito) //  Если трубка Пито
                     {
@@ -211,7 +221,7 @@ namespace CruisingFlightStand
                         AddLog("T3"   + logSplitter + tenzo1_Data.Text.Replace(gramm, "") + logSplitter);
                         AddLog("T4"   + logSplitter + tenzo1_Data.Text.Replace(gramm, "") + logSplitter);
                         AddLog("T5"   + logSplitter + tenzo5_Data.Text.Replace(gramm, "") + logSplitter);
-                        AddLog("Pito" + logSplitter + resist_Data.Text.Replace(kpa, "")   + logSplitter + "\n");
+                        AddLog("Pito" + logSplitter + resist_Data.Text.Replace(kmh, "")   + logSplitter + "\n");
                     }
                 }
             }
@@ -270,6 +280,16 @@ namespace CruisingFlightStand
                 serialPort.WriteLine(Commands.Arduino.shutdown);    // Перевести систему в спящий режим
                 serialPort.Close();                                 // Отключить порт
             }
+        }
+
+        private void mainTimer_Tick(object sender, EventArgs e)
+        {
+            tenzo_sum.Text = Convert.ToString(
+                Convert.ToDouble(tenzo1_Data.Text) +
+                Convert.ToDouble(tenzo2_Data.Text) +
+                Convert.ToDouble(tenzo3_Data.Text) +
+                Convert.ToDouble(tenzo4_Data.Text)
+                ) + gramm;
         }
     }
 }

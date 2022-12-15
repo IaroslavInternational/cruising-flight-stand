@@ -31,10 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageForm));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.tenzo5_Data = new System.Windows.Forms.Label();
             this.tenzo4_Data = new System.Windows.Forms.Label();
             this.tenzo3_Data = new System.Windows.Forms.Label();
             this.tenzo1_Data = new System.Windows.Forms.Label();
@@ -49,82 +46,75 @@
             this.label18 = new System.Windows.Forms.Label();
             this.serialPort = new System.IO.Ports.SerialPort(this.components);
             this.logBtn = new FontAwesome.Sharp.IconButton();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.iconPictureBox3 = new FontAwesome.Sharp.IconPictureBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.tenzo5_Data = new System.Windows.Forms.Label();
+            this.tenzo_sum = new System.Windows.Forms.Label();
+            this.mainTimer = new System.Windows.Forms.Timer(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.tenzo5_DataMain = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.kTenzo1 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.kTenzo2 = new System.Windows.Forms.TextBox();
+            this.kTenzo3 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.kTenzo5 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.kTenzo4 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.saveBtn = new FontAwesome.Sharp.IconButton();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.tenzo5_Data);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.tenzo4_Data);
-            this.panel1.Controls.Add(this.tenzo3_Data);
-            this.panel1.Controls.Add(this.tenzo1_Data);
-            this.panel1.Controls.Add(this.tenzo2_Data);
+            this.panel1.Controls.Add(this.tenzo_sum);
+            this.panel1.Controls.Add(this.tenzo5_DataMain);
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.iconPictureBox1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(24, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(299, 199);
+            this.panel1.Size = new System.Drawing.Size(299, 183);
             this.panel1.TabIndex = 0;
             // 
-            // label3
+            // tenzo5_Data
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(151, 129);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(23, 25);
-            this.label3.TabIndex = 22;
-            this.label3.Text = "4";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(46, 129);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(23, 25);
-            this.label6.TabIndex = 18;
-            this.label6.Text = "2";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(46, 95);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(20, 25);
-            this.label4.TabIndex = 17;
-            this.label4.Text = "1";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(151, 95);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(23, 25);
-            this.label5.TabIndex = 21;
-            this.label5.Text = "3";
+            this.tenzo5_Data.AutoSize = true;
+            this.tenzo5_Data.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tenzo5_Data.Location = new System.Drawing.Point(358, 139);
+            this.tenzo5_Data.Name = "tenzo5_Data";
+            this.tenzo5_Data.Size = new System.Drawing.Size(79, 25);
+            this.tenzo5_Data.TabIndex = 23;
+            this.tenzo5_Data.Text = "5500 гр.";
             // 
             // tenzo4_Data
             // 
             this.tenzo4_Data.AutoSize = true;
             this.tenzo4_Data.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tenzo4_Data.Location = new System.Drawing.Point(172, 129);
+            this.tenzo4_Data.Location = new System.Drawing.Point(358, 110);
             this.tenzo4_Data.Name = "tenzo4_Data";
             this.tenzo4_Data.Size = new System.Drawing.Size(79, 25);
             this.tenzo4_Data.TabIndex = 20;
@@ -134,7 +124,7 @@
             // 
             this.tenzo3_Data.AutoSize = true;
             this.tenzo3_Data.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tenzo3_Data.Location = new System.Drawing.Point(172, 95);
+            this.tenzo3_Data.Location = new System.Drawing.Point(86, 169);
             this.tenzo3_Data.Name = "tenzo3_Data";
             this.tenzo3_Data.Size = new System.Drawing.Size(79, 25);
             this.tenzo3_Data.TabIndex = 19;
@@ -144,7 +134,7 @@
             // 
             this.tenzo1_Data.AutoSize = true;
             this.tenzo1_Data.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tenzo1_Data.Location = new System.Drawing.Point(67, 95);
+            this.tenzo1_Data.Location = new System.Drawing.Point(86, 111);
             this.tenzo1_Data.Name = "tenzo1_Data";
             this.tenzo1_Data.Size = new System.Drawing.Size(79, 25);
             this.tenzo1_Data.TabIndex = 15;
@@ -154,7 +144,7 @@
             // 
             this.tenzo2_Data.AutoSize = true;
             this.tenzo2_Data.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tenzo2_Data.Location = new System.Drawing.Point(67, 129);
+            this.tenzo2_Data.Location = new System.Drawing.Point(86, 140);
             this.tenzo2_Data.Name = "tenzo2_Data";
             this.tenzo2_Data.Size = new System.Drawing.Size(79, 25);
             this.tenzo2_Data.TabIndex = 16;
@@ -203,7 +193,7 @@
             this.panel2.Controls.Add(this.label18);
             this.panel2.Location = new System.Drawing.Point(344, 24);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(299, 163);
+            this.panel2.Size = new System.Drawing.Size(299, 183);
             this.panel2.TabIndex = 23;
             // 
             // resist_Data
@@ -212,9 +202,9 @@
             this.resist_Data.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.resist_Data.Location = new System.Drawing.Point(112, 111);
             this.resist_Data.Name = "resist_Data";
-            this.resist_Data.Size = new System.Drawing.Size(80, 25);
+            this.resist_Data.Size = new System.Drawing.Size(83, 25);
             this.resist_Data.TabIndex = 15;
-            this.resist_Data.Text = "5500 Па";
+            this.resist_Data.Text = "120 км/ч";
             // 
             // pictureBox2
             // 
@@ -246,9 +236,9 @@
             this.label18.Font = new System.Drawing.Font("Segoe UI Semilight", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label18.Location = new System.Drawing.Point(84, 18);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(206, 37);
+            this.label18.Size = new System.Drawing.Size(127, 37);
             this.label18.TabIndex = 0;
-            this.label18.Text = "Сопротивление";
+            this.label18.Text = "Скорость";
             // 
             // serialPort
             // 
@@ -274,25 +264,330 @@
             this.logBtn.UseVisualStyleBackColor = false;
             this.logBtn.Click += new System.EventHandler(this.logBtn_Click);
             // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.Controls.Add(this.label14);
+            this.panel3.Controls.Add(this.textBox1);
+            this.panel3.Controls.Add(this.label12);
+            this.panel3.Controls.Add(this.kTenzo5);
+            this.panel3.Controls.Add(this.label9);
+            this.panel3.Controls.Add(this.kTenzo4);
+            this.panel3.Controls.Add(this.label10);
+            this.panel3.Controls.Add(this.kTenzo3);
+            this.panel3.Controls.Add(this.label6);
+            this.panel3.Controls.Add(this.kTenzo2);
+            this.panel3.Controls.Add(this.label4);
+            this.panel3.Controls.Add(this.kTenzo1);
+            this.panel3.Controls.Add(this.label5);
+            this.panel3.Controls.Add(this.label15);
+            this.panel3.Controls.Add(this.tenzo5_Data);
+            this.panel3.Controls.Add(this.label17);
+            this.panel3.Controls.Add(this.label13);
+            this.panel3.Controls.Add(this.label11);
+            this.panel3.Controls.Add(this.tenzo1_Data);
+            this.panel3.Controls.Add(this.tenzo4_Data);
+            this.panel3.Controls.Add(this.tenzo3_Data);
+            this.panel3.Controls.Add(this.tenzo2_Data);
+            this.panel3.Controls.Add(this.label7);
+            this.panel3.Controls.Add(this.pictureBox3);
+            this.panel3.Controls.Add(this.iconPictureBox3);
+            this.panel3.Controls.Add(this.label8);
+            this.panel3.Location = new System.Drawing.Point(24, 227);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(619, 231);
+            this.panel3.TabIndex = 27;
+            // 
+            // label7
+            // 
+            this.label7.AutoEllipsis = true;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(8, 111);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(79, 25);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Тензо 1:";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(13, 58);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(591, 50);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 14;
+            this.pictureBox3.TabStop = false;
+            // 
+            // iconPictureBox3
+            // 
+            this.iconPictureBox3.BackColor = System.Drawing.Color.White;
+            this.iconPictureBox3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.ListAlt;
+            this.iconPictureBox3.IconColor = System.Drawing.SystemColors.ControlText;
+            this.iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox3.IconSize = 73;
+            this.iconPictureBox3.Location = new System.Drawing.Point(3, 3);
+            this.iconPictureBox3.Name = "iconPictureBox3";
+            this.iconPictureBox3.Size = new System.Drawing.Size(75, 73);
+            this.iconPictureBox3.TabIndex = 2;
+            this.iconPictureBox3.TabStop = false;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI Semilight", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(84, 18);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(155, 37);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Все данные";
+            // 
+            // label11
+            // 
+            this.label11.AutoEllipsis = true;
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label11.Location = new System.Drawing.Point(8, 140);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(82, 25);
+            this.label11.TabIndex = 17;
+            this.label11.Text = "Тензо 2:";
+            // 
+            // label13
+            // 
+            this.label13.AutoEllipsis = true;
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label13.Location = new System.Drawing.Point(8, 169);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(82, 25);
+            this.label13.TabIndex = 19;
+            this.label13.Text = "Тензо 3:";
+            // 
+            // label15
+            // 
+            this.label15.AutoEllipsis = true;
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label15.Location = new System.Drawing.Point(280, 139);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(82, 25);
+            this.label15.TabIndex = 23;
+            this.label15.Text = "Тензо 5:";
+            // 
+            // label17
+            // 
+            this.label17.AutoEllipsis = true;
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label17.Location = new System.Drawing.Point(280, 110);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(82, 25);
+            this.label17.TabIndex = 21;
+            this.label17.Text = "Тензо 4:";
+            // 
             // label2
             // 
+            this.label2.AutoEllipsis = true;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(93, 163);
+            this.label2.Location = new System.Drawing.Point(11, 111);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(23, 25);
+            this.label2.Size = new System.Drawing.Size(109, 25);
             this.label2.TabIndex = 24;
-            this.label2.Text = "5";
+            this.label2.Text = "Сумма 1-4:";
             // 
-            // tenzo5_Data
+            // tenzo_sum
             // 
-            this.tenzo5_Data.AutoSize = true;
-            this.tenzo5_Data.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tenzo5_Data.Location = new System.Drawing.Point(114, 163);
-            this.tenzo5_Data.Name = "tenzo5_Data";
-            this.tenzo5_Data.Size = new System.Drawing.Size(79, 25);
-            this.tenzo5_Data.TabIndex = 23;
-            this.tenzo5_Data.Text = "5500 гр.";
+            this.tenzo_sum.AutoSize = true;
+            this.tenzo_sum.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tenzo_sum.Location = new System.Drawing.Point(126, 111);
+            this.tenzo_sum.Name = "tenzo_sum";
+            this.tenzo_sum.Size = new System.Drawing.Size(79, 25);
+            this.tenzo_sum.TabIndex = 24;
+            this.tenzo_sum.Text = "5500 гр.";
+            // 
+            // mainTimer
+            // 
+            this.mainTimer.Interval = 10;
+            this.mainTimer.Tick += new System.EventHandler(this.mainTimer_Tick);
+            // 
+            // label3
+            // 
+            this.label3.AutoEllipsis = true;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(13, 138);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(82, 25);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "Тензо 5:";
+            // 
+            // tenzo5_DataMain
+            // 
+            this.tenzo5_DataMain.AutoSize = true;
+            this.tenzo5_DataMain.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tenzo5_DataMain.Location = new System.Drawing.Point(101, 138);
+            this.tenzo5_DataMain.Name = "tenzo5_DataMain";
+            this.tenzo5_DataMain.Size = new System.Drawing.Size(79, 25);
+            this.tenzo5_DataMain.TabIndex = 25;
+            this.tenzo5_DataMain.Text = "5500 гр.";
+            // 
+            // label5
+            // 
+            this.label5.AutoEllipsis = true;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(180, 111);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(37, 25);
+            this.label5.TabIndex = 25;
+            this.label5.Text = "К1:";
+            // 
+            // kTenzo1
+            // 
+            this.kTenzo1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.kTenzo1.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.kTenzo1.Location = new System.Drawing.Point(223, 110);
+            this.kTenzo1.Name = "kTenzo1";
+            this.kTenzo1.Size = new System.Drawing.Size(51, 26);
+            this.kTenzo1.TabIndex = 26;
+            this.kTenzo1.Text = "5.3";
+            // 
+            // label4
+            // 
+            this.label4.AutoEllipsis = true;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(180, 140);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(40, 25);
+            this.label4.TabIndex = 27;
+            this.label4.Text = "К2:";
+            // 
+            // kTenzo2
+            // 
+            this.kTenzo2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.kTenzo2.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.kTenzo2.Location = new System.Drawing.Point(223, 139);
+            this.kTenzo2.Name = "kTenzo2";
+            this.kTenzo2.Size = new System.Drawing.Size(51, 26);
+            this.kTenzo2.TabIndex = 28;
+            this.kTenzo2.Text = "5.3";
+            // 
+            // kTenzo3
+            // 
+            this.kTenzo3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.kTenzo3.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.kTenzo3.Location = new System.Drawing.Point(223, 168);
+            this.kTenzo3.Name = "kTenzo3";
+            this.kTenzo3.Size = new System.Drawing.Size(51, 26);
+            this.kTenzo3.TabIndex = 30;
+            this.kTenzo3.Text = "5.3";
+            // 
+            // label6
+            // 
+            this.label6.AutoEllipsis = true;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(180, 169);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(40, 25);
+            this.label6.TabIndex = 29;
+            this.label6.Text = "К3:";
+            // 
+            // kTenzo5
+            // 
+            this.kTenzo5.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.kTenzo5.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.kTenzo5.Location = new System.Drawing.Point(495, 138);
+            this.kTenzo5.Name = "kTenzo5";
+            this.kTenzo5.Size = new System.Drawing.Size(51, 26);
+            this.kTenzo5.TabIndex = 34;
+            this.kTenzo5.Text = "5.3";
+            // 
+            // label9
+            // 
+            this.label9.AutoEllipsis = true;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(452, 139);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(40, 25);
+            this.label9.TabIndex = 33;
+            this.label9.Text = "К5:";
+            // 
+            // kTenzo4
+            // 
+            this.kTenzo4.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.kTenzo4.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.kTenzo4.Location = new System.Drawing.Point(495, 109);
+            this.kTenzo4.Name = "kTenzo4";
+            this.kTenzo4.Size = new System.Drawing.Size(51, 26);
+            this.kTenzo4.TabIndex = 32;
+            this.kTenzo4.Text = "5.3";
+            // 
+            // label10
+            // 
+            this.label10.AutoEllipsis = true;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label10.Location = new System.Drawing.Point(452, 110);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(40, 25);
+            this.label10.TabIndex = 31;
+            this.label10.Text = "К4:";
+            // 
+            // saveBtn
+            // 
+            this.saveBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(33)))), ((int)(((byte)(53)))));
+            this.saveBtn.FlatAppearance.BorderSize = 0;
+            this.saveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveBtn.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.saveBtn.ForeColor = System.Drawing.Color.Gainsboro;
+            this.saveBtn.IconChar = FontAwesome.Sharp.IconChar.FileAlt;
+            this.saveBtn.IconColor = System.Drawing.Color.Gainsboro;
+            this.saveBtn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.saveBtn.IconSize = 36;
+            this.saveBtn.Location = new System.Drawing.Point(291, 485);
+            this.saveBtn.Name = "saveBtn";
+            this.saveBtn.Size = new System.Drawing.Size(170, 60);
+            this.saveBtn.TabIndex = 28;
+            this.saveBtn.Text = "Сохранить";
+            this.saveBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.saveBtn.UseVisualStyleBackColor = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox1.Location = new System.Drawing.Point(383, 169);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(48, 26);
+            this.textBox1.TabIndex = 36;
+            this.textBox1.Text = "1.225";
+            // 
+            // label12
+            // 
+            this.label12.AutoEllipsis = true;
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label12.Location = new System.Drawing.Point(319, 169);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(58, 25);
+            this.label12.TabIndex = 35;
+            this.label12.Text = "Air ρ:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label14.Location = new System.Drawing.Point(422, 169);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(58, 25);
+            this.label14.TabIndex = 37;
+            this.label14.Text = "кг/м3";
             // 
             // ManageForm
             // 
@@ -300,6 +595,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
             this.ClientSize = new System.Drawing.Size(668, 566);
+            this.Controls.Add(this.saveBtn);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.logBtn);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -316,6 +613,10 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -326,10 +627,6 @@
         private System.Windows.Forms.Label label1;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label tenzo4_Data;
         private System.Windows.Forms.Label tenzo3_Data;
         private System.Windows.Forms.Label tenzo1_Data;
@@ -341,7 +638,34 @@
         private System.Windows.Forms.Label label18;
         private System.IO.Ports.SerialPort serialPort;
         private FontAwesome.Sharp.IconButton logBtn;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label tenzo5_Data;
+        private System.Windows.Forms.Label tenzo_sum;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox3;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Timer mainTimer;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label tenzo5_DataMain;
+        private System.Windows.Forms.TextBox kTenzo1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox kTenzo5;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox kTenzo4;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox kTenzo3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox kTenzo2;
+        private System.Windows.Forms.Label label4;
+        private FontAwesome.Sharp.IconButton saveBtn;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label12;
     }
 }
