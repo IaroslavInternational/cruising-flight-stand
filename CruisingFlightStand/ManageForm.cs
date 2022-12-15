@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace CruisingFlightStand
 {
@@ -21,9 +22,14 @@ namespace CruisingFlightStand
     {
         struct ConnectionData
         {
+            public double KT1;
+            public double KT2;
+            public double KT3;
+            public double KT4;
+            public double KT5;
             public double AirDensity;
             public string PortName;
-            public int BaudRate;
+            public int    BaudRate;
         }
 
         private bool IsExit = false;                     // Если программа закрывается
@@ -92,6 +98,13 @@ namespace CruisingFlightStand
                 // Установка заддержки отправки данных
                 serialPort.WriteTimeout = 10;
 
+                kTenzo1.Text = Convert.ToString(data.KT1);
+                kTenzo2.Text = Convert.ToString(data.KT2);
+                kTenzo3.Text = Convert.ToString(data.KT3);
+                kTenzo4.Text = Convert.ToString(data.KT4);
+                kTenzo5.Text = Convert.ToString(data.KT5);
+                airDensity.Text = Convert.ToString(data.AirDensity);
+
                 try
                 {
                     if (!serialPort.IsOpen)
@@ -142,19 +155,19 @@ namespace CruisingFlightStand
             switch(id)
             {
                 case 1: 
-                    tenzo1_Data.Text = val + " " + gramm;
+                    tenzo1_Data.Text = Commands.ProcessTenzoValue(val, Convert.ToDouble(kTenzo1.Text)) + " " + gramm;
                     break;
                 case 2:
-                    tenzo2_Data.Text = val + " " + gramm;
+                    tenzo2_Data.Text = Commands.ProcessTenzoValue(val, Convert.ToDouble(kTenzo2.Text)) + " " + gramm;
                     break;
                 case 3:
-                    tenzo3_Data.Text = val + " " + gramm;
+                    tenzo3_Data.Text = Commands.ProcessTenzoValue(val, Convert.ToDouble(kTenzo3.Text)) + " " + gramm;
                     break;
                 case 4:
-                    tenzo4_Data.Text = val + " " + gramm;
+                    tenzo4_Data.Text = Commands.ProcessTenzoValue(val, Convert.ToDouble(kTenzo4.Text)) + " " + gramm;
                     break;
                 case 5:
-                    tenzo5_Data.Text = val + " " + gramm;
+                    tenzo5_Data.Text = Commands.ProcessTenzoValue(val, Convert.ToDouble(kTenzo5.Text)) + " " + gramm;
                     break;
             }
         }
@@ -166,7 +179,7 @@ namespace CruisingFlightStand
 
             try
             {
-                var data = serialPort.ReadLine();   // Данные
+                var data = serialPort.ReadLine();       // Данные
                 data = Commands.DeleteSpecSymb(data);   // Очистка от спец. символов
 
                 // 0 - Команда | 1 - значение
@@ -285,11 +298,34 @@ namespace CruisingFlightStand
         private void mainTimer_Tick(object sender, EventArgs e)
         {
             tenzo_sum.Text = Convert.ToString(
-                Convert.ToDouble(tenzo1_Data.Text) +
-                Convert.ToDouble(tenzo2_Data.Text) +
-                Convert.ToDouble(tenzo3_Data.Text) +
-                Convert.ToDouble(tenzo4_Data.Text)
+                Convert.ToDouble(tenzo1_Data.Text.Replace(gramm, "")) +
+                Convert.ToDouble(tenzo2_Data.Text.Replace(gramm, "")) +
+                Convert.ToDouble(tenzo3_Data.Text.Replace(gramm, "")) +
+                Convert.ToDouble(tenzo4_Data.Text.Replace(gramm, ""))
                 ) + gramm;
+        }
+
+        private void saveBtn_Click(object sender, EventArgs e)
+        {
+            ConnectionData dataSave;
+
+            dataSave.PortName = data.PortName;
+            dataSave.BaudRate = data.BaudRate;
+            dataSave.AirDensity = Convert.ToDouble(airDensity.Text);
+            dataSave.KT1 = Convert.ToDouble(kTenzo1.Text);
+            dataSave.KT2 = Convert.ToDouble(kTenzo2.Text);
+            dataSave.KT3 = Convert.ToDouble(kTenzo3.Text);
+            dataSave.KT4 = Convert.ToDouble(kTenzo4.Text);
+            dataSave.KT5 = Convert.ToDouble(kTenzo5.Text);
+
+            string json = JsonConvert.SerializeObject(dataSave);
+
+            // запись в файл
+            using (FileStream fstream = new FileStream("cnt.json", FileMode.OpenOrCreate))
+            {
+                byte[] array = System.Text.Encoding.Default.GetBytes(json);
+                fstream.Write(array, 0, array.Length);
+            }
         }
     }
 }

@@ -21,11 +21,11 @@
 #define HX711_5_CLK	 11
 #define HX711_5_DOUT 10
 
-#define HX711_1_CAL_FACTOR 5.36f	
-#define HX711_2_CAL_FACTOR 5.48f	
-#define HX711_3_CAL_FACTOR 5.41f	
-#define HX711_4_CAL_FACTOR 5.45f	
-#define HX711_5_CAL_FACTOR 5.45f	
+#define HX711_1_CAL_FACTOR 1.0f	
+#define HX711_2_CAL_FACTOR 1.0f	
+#define HX711_3_CAL_FACTOR 1.0f	
+#define HX711_4_CAL_FACTOR 1.0f	
+#define HX711_5_CAL_FACTOR 1.0f	
 #define HX711_SCALE		   0.035274f
 
 #define ASPD_IN A0
