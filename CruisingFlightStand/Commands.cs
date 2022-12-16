@@ -25,6 +25,12 @@ namespace CruisingFlightStand
             public const string pito = "[Pito]";  // Давление в трубке Пито
         }
 
+        public struct Sensors
+        {
+            public const string volt    = "[Voltmeter]";  // Падение напряжения
+            public const string current = "[Ampermeter]"; // Потребление тока
+        }
+
         // Команды для Ардуино
         public struct Arduino
         {

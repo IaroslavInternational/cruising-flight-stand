@@ -21,4 +21,7 @@
 
 /*********/
 
+#define V_DATA  "[Voltmeter]"
+#define A_DATA  "[Ampermeter]"
+
 /******************/

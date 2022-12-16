@@ -54,12 +54,20 @@ namespace CruisingFlightStand
         private delegate void PitoSetter(string val);
         private PitoSetter SetPito;
 
+        private delegate void VoltSetter(string val);
+        private VoltSetter SetVolt;
+
+        private delegate void AmpSetter(string val);
+        private AmpSetter SetAmp;
+
         public ManageForm()
         {
             InitializeComponent();
 
             SetTenzo = new TenzoSetter(SetNewTenzoVal);
             SetPito = new PitoSetter(SetNewPitoVal);
+            SetVolt = new VoltSetter(SetNewVoltVal);
+            SetAmp = new AmpSetter(SetNewAmpVal);
         }
 
         private void ManageForm_Load(object sender, EventArgs e)
@@ -168,8 +176,19 @@ namespace CruisingFlightStand
                     break;
                 case 5:
                     tenzo5_Data.Text = Commands.ProcessTenzoValue(val, Convert.ToDouble(kTenzo5.Text)) + " " + gramm;
+                    tenzo5_DataMain.Text = Commands.ProcessTenzoValue(val, Convert.ToDouble(kTenzo5.Text)) + " " + gramm;
                     break;
             }
+        }
+
+        private void SetNewVoltVal(string val)
+        {
+            voltage_Data.Text = val + " A";
+        }
+
+        private void SetNewAmpVal(string val)
+        {
+            current_Data.Text = val + " В";
         }
 
         private void serialPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
@@ -215,15 +234,24 @@ namespace CruisingFlightStand
                     {
                         // Установить значение
                         tenzo5_Data.Invoke(SetTenzo, value, 5);
-                        tenzo5_DataMain.Invoke(SetTenzo, value, 5);
                     }
-                    else if (command == Commands.Pito.pito) //  Если трубка Пито
+                    else if (command == Commands.Pito.pito) // Если трубка Пито
                     {
                         // Установить значение
                         resist_Data.Invoke(SetPito, value);
                     }
+                    else if (command == Commands.Sensors.volt) // Если напряжение
+                    {
+                        // Установить значение
+                        voltage_Data.Invoke(SetVolt, value);
+                    }
+                    else if (command == Commands.Sensors.current) // Если ток
+                    {
+                        // Установить значение
+                        current_Data.Invoke(SetVolt, value);
+                    }
 
-                    if(DynamicLog)
+                    if (DynamicLog)
                     {
                         dateTime = DateTime.Now;
 
@@ -234,6 +262,9 @@ namespace CruisingFlightStand
                         AddLog("T3"   + logSplitter + tenzo1_Data.Text.Replace(gramm, "") + logSplitter);
                         AddLog("T4"   + logSplitter + tenzo1_Data.Text.Replace(gramm, "") + logSplitter);
                         AddLog("T5"   + logSplitter + tenzo5_Data.Text.Replace(gramm, "") + logSplitter);
+                        AddLog("S"    + logSplitter + tenzo_sum.Text.Replace(gramm, "")   + logSplitter);
+                        AddLog("A"    + logSplitter + current_Data.Text.Replace("A", "")  + logSplitter);
+                        AddLog("V"    + logSplitter + voltage_Data.Text.Replace("В", "")  + logSplitter);
                         AddLog("Pito" + logSplitter + resist_Data.Text.Replace(kmh, "")   + logSplitter + "\n");
                     }
                 }

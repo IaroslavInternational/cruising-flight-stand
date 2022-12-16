@@ -6,6 +6,7 @@ float t2Data[T_DELAY];
 float t3Data[T_DELAY];
 float t4Data[T_DELAY];
 float t5Data[T_DELAY];
+float cData[C_DELAY];
 
 /*   System stuff   */
 
@@ -15,7 +16,8 @@ System::System()
 	tenzo2(HX711_2_CAL_FACTOR),
 	tenzo3(HX711_3_CAL_FACTOR),
 	tenzo4(HX711_4_CAL_FACTOR),
-	tenzo5(HX711_5_CAL_FACTOR)
+	tenzo5(HX711_5_CAL_FACTOR),
+	vm(V_PIN)
 {}
 
 void System::InitiliazeModules()
@@ -25,14 +27,15 @@ void System::InitiliazeModules()
 	tenzo3.Setup(HX711_3_DOUT, HX711_3_CLK);
 	tenzo4.Setup(HX711_4_DOUT, HX711_4_CLK);
 	tenzo5.Setup(HX711_5_DOUT, HX711_5_CLK);
+
+	amp.Setup();
+	pinMode(ASPD_IN, INPUT);
 }
 
 void System::PreProcess(size_t b_rate, size_t t_out)
 {
 	Serial.begin(b_rate);
 	Serial.setTimeout(t_out);
-
-	pinMode(ASPD_IN, INPUT);
 
 	for (int i = 0; i < 10; i++)
 	{
@@ -74,8 +77,16 @@ void System::Tick()
 	t3Data[current_t_time] = tenzo3.GetUnits();
 	t4Data[current_t_time] = tenzo4.GetUnits();
 	t5Data[current_t_time] = tenzo5.GetUnits();
+	cData[current_time]    = amp.GetVoltage();
 
 	current_t_time = current_t_time + DELAY_TIME;
+
+	if (current_time == C_DELAY)
+	{
+		amp.Process(A_DATA);
+
+		current_time = 0;
+	}
 
 	if (current_t_time == T_DELAY)
 	{
@@ -96,6 +107,8 @@ void System::Tick()
 	Serial.print("|");
 	Serial.print(P * 1000.0f);
 	Serial.println("\n");
+
+	vm.Process(V_DATA);
 }
 
 /* end System stuff */
@@ -146,3 +159,38 @@ void hx711_adc::SetKoef(float koef)
 }
 
 /* end HX 711 stuff */
+
+/*   voltmeter stuff   */
+
+voltmeter::voltmeter(uint8_t pin)
+{
+	pinMode(pin, INPUT);
+}
+
+void voltmeter::Process(String header)
+{
+	SpecialFunctions::SendData(header, (String)map(analogRead(this->pin), 0, 1023, 0, MAX_V));
+}
+
+/* end voltmeter stuff */
+
+/*   ampermeter stuff   */
+
+void ampermeter::Setup()
+{
+	if (!ina219.begin()) {
+		Serial.println("Failed to find INA219 chip");
+	}
+}
+
+void ampermeter::Process(String header)
+{
+	SpecialFunctions::SendData(header, (String)SpecialFunctions::mean(cData, C_DELAY));
+}
+
+float ampermeter::GetVoltage()
+{
+	return ina219.getShuntVoltage_mV();
+}
+
+/* end ampermeter stuff */

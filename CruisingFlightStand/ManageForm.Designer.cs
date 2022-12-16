@@ -74,6 +74,11 @@
             this.label8 = new System.Windows.Forms.Label();
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.saveBtn = new FontAwesome.Sharp.IconButton();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.current_Data = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.voltage_Data = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
@@ -83,6 +88,7 @@
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).BeginInit();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -344,7 +350,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label14.Location = new System.Drawing.Point(422, 169);
+            this.label14.Location = new System.Drawing.Point(429, 169);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(58, 25);
             this.label14.TabIndex = 37;
@@ -356,7 +362,7 @@
             this.airDensity.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.airDensity.Location = new System.Drawing.Point(383, 169);
             this.airDensity.Name = "airDensity";
-            this.airDensity.Size = new System.Drawing.Size(48, 26);
+            this.airDensity.Size = new System.Drawing.Size(54, 26);
             this.airDensity.TabIndex = 36;
             this.airDensity.Text = "1.225";
             // 
@@ -590,12 +596,67 @@
             this.saveBtn.UseVisualStyleBackColor = false;
             this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
             // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.Controls.Add(this.voltage_Data);
+            this.panel4.Controls.Add(this.label20);
+            this.panel4.Controls.Add(this.current_Data);
+            this.panel4.Controls.Add(this.label21);
+            this.panel4.Location = new System.Drawing.Point(24, 458);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(239, 87);
+            this.panel4.TabIndex = 26;
+            // 
+            // current_Data
+            // 
+            this.current_Data.AutoSize = true;
+            this.current_Data.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.current_Data.Location = new System.Drawing.Point(56, 3);
+            this.current_Data.Name = "current_Data";
+            this.current_Data.Size = new System.Drawing.Size(39, 25);
+            this.current_Data.TabIndex = 24;
+            this.current_Data.Text = "2 А";
+            // 
+            // label21
+            // 
+            this.label21.AutoEllipsis = true;
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label21.Location = new System.Drawing.Point(8, 3);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(47, 25);
+            this.label21.TabIndex = 24;
+            this.label21.Text = "Ток:";
+            // 
+            // voltage_Data
+            // 
+            this.voltage_Data.AutoSize = true;
+            this.voltage_Data.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.voltage_Data.Location = new System.Drawing.Point(141, 28);
+            this.voltage_Data.Name = "voltage_Data";
+            this.voltage_Data.Size = new System.Drawing.Size(48, 25);
+            this.voltage_Data.TabIndex = 25;
+            this.voltage_Data.Text = "50 В";
+            // 
+            // label20
+            // 
+            this.label20.AutoEllipsis = true;
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label20.Location = new System.Drawing.Point(8, 28);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(130, 25);
+            this.label20.TabIndex = 26;
+            this.label20.Text = "Напряжение:";
+            // 
             // ManageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(231)))), ((int)(((byte)(231)))));
             this.ClientSize = new System.Drawing.Size(668, 566);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.logBtn);
@@ -618,6 +679,8 @@
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -668,5 +731,10 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox airDensity;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label voltage_Data;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label current_Data;
     }
 }
