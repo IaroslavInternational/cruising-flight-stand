@@ -93,10 +93,11 @@ private:
 	voltmeter vm;
 	ampermeter amp;
 private:
-	int sum = 0;
-	int offset = 0;
+	int   sum = 0;
+	int   offset = 0;
 	float Vout = 0.0f;
 	float P = 0.0f;
+	float sensorValue = 0.0f;
 private:
 	bool   set_koefs      = false;
 	unsigned short int current_t_time = 0;

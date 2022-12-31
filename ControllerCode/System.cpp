@@ -132,7 +132,7 @@ void hx711_adc::Process(String header, float* arr)
 	Serial.print(header);
 	Serial.print("|");
 	Serial.print(String(SpecialFunctions::mean<float>(arr, T_DELAY)));
-	Serial.print("\n")
+	Serial.print("\n");
 }
 
 float hx711_adc::GetUnits()
