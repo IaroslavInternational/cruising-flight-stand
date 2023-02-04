@@ -53,6 +53,7 @@ namespace CruisingFlightStand
 
         private delegate void PitoSetter(string val);
         private PitoSetter SetPito;
+        private PitoSetter SetPitoRaw;
 
         private delegate void VoltSetter(string val);
         private VoltSetter SetVolt;
@@ -66,6 +67,7 @@ namespace CruisingFlightStand
 
             SetTenzo = new TenzoSetter(SetNewTenzoVal);
             SetPito = new PitoSetter(SetNewPitoVal);
+            SetPitoRaw = new PitoSetter(SetNewPitoRawVal);
             SetVolt = new VoltSetter(SetNewVoltVal);
             SetAmp = new AmpSetter(SetNewAmpVal);
         }
@@ -156,13 +158,19 @@ namespace CruisingFlightStand
             double speed = Math.Pow((P / 1.8 * data.AirDensity), 0.5);
 
             resist_Data.Text = speed + " " + kmh;
+            //resist_Data.Text = P + " " + kmh;
+        }
+
+        private void SetNewPitoRawVal(string val)
+        {
+            resist_Data_Raw.Text = val;
         }
 
         private void SetNewTenzoVal(string val, int id)
         {
             switch(id)
             {
-                case 1: 
+                /*case 1: 
                     tenzo1_Data.Text = Commands.ProcessTenzoValue(val, Convert.ToDouble(kTenzo1.Text)) + " " + gramm;
                     break;
                 case 2:
@@ -177,23 +185,40 @@ namespace CruisingFlightStand
                 case 5:
                     tenzo5_Data.Text = Commands.ProcessTenzoValue(val, Convert.ToDouble(kTenzo5.Text)) + " " + gramm;
                     tenzo5_DataMain.Text = Commands.ProcessTenzoValue(val, Convert.ToDouble(kTenzo5.Text)) + " " + gramm;
+                    break;*/
+
+                case 1:
+                    tenzo1_Data.Text = val + " " + gramm;
+                    break;
+                case 2:
+                    tenzo2_Data.Text = val + " " + gramm;
+                    break;
+                case 3:
+                    tenzo3_Data.Text = val + " " + gramm;
+                    break;
+                case 4:
+                    tenzo4_Data.Text = val + " " + gramm;
+                    break;
+                case 5:
+                    tenzo5_Data.Text = val + " " + gramm;
+                    tenzo5_DataMain.Text = val + " " + gramm;
                     break;
             }
         }
 
         private void SetNewVoltVal(string val)
         {
-            voltage_Data.Text = val + " A";
+            voltage_Data.Text = val + " В";
         }
 
         private void SetNewAmpVal(string val)
         {
-            current_Data.Text = val + " В";
+            current_Data.Text = val + " А";
         }
 
         private void serialPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            if (!serialPort.IsOpen && !IsExit)
+            if (!serialPort.IsOpen)
                 return;
 
             try
@@ -240,6 +265,11 @@ namespace CruisingFlightStand
                         // Установить значение
                         resist_Data.Invoke(SetPito, value);
                     }
+                    else if (command == Commands.Pito.pito_raw) // Если трубка Пито
+                    {
+                        // Установить значение
+                        resist_Data_Raw.Invoke(SetPitoRaw, value);
+                    }
                     else if (command == Commands.Sensors.volt) // Если напряжение
                     {
                         // Установить значение
@@ -248,7 +278,7 @@ namespace CruisingFlightStand
                     else if (command == Commands.Sensors.current) // Если ток
                     {
                         // Установить значение
-                        current_Data.Invoke(SetVolt, value);
+                        current_Data.Invoke(SetAmp, value);
                     }
 
                     if (DynamicLog)
@@ -258,9 +288,9 @@ namespace CruisingFlightStand
                         SetStringNumber();
                         AddLog("Time" + logSplitter + dateTime.ToString("HH:mm:ss")       + logSplitter);
                         AddLog("T1"   + logSplitter + tenzo1_Data.Text.Replace(gramm, "") + logSplitter);
-                        AddLog("T2"   + logSplitter + tenzo1_Data.Text.Replace(gramm, "") + logSplitter);
-                        AddLog("T3"   + logSplitter + tenzo1_Data.Text.Replace(gramm, "") + logSplitter);
-                        AddLog("T4"   + logSplitter + tenzo1_Data.Text.Replace(gramm, "") + logSplitter);
+                        AddLog("T2"   + logSplitter + tenzo2_Data.Text.Replace(gramm, "") + logSplitter);
+                        AddLog("T3"   + logSplitter + tenzo3_Data.Text.Replace(gramm, "") + logSplitter);
+                        AddLog("T4"   + logSplitter + tenzo4_Data.Text.Replace(gramm, "") + logSplitter);
                         AddLog("T5"   + logSplitter + tenzo5_Data.Text.Replace(gramm, "") + logSplitter);
                         AddLog("S"    + logSplitter + tenzo_sum.Text.Replace(gramm, "")   + logSplitter);
                         AddLog("A"    + logSplitter + current_Data.Text.Replace("A", "")  + logSplitter);
@@ -328,12 +358,18 @@ namespace CruisingFlightStand
 
         private void mainTimer_Tick(object sender, EventArgs e)
         {
-            tenzo_sum.Text = Convert.ToString(
-                Convert.ToDouble(tenzo1_Data.Text.Replace(gramm, "")) +
-                Convert.ToDouble(tenzo2_Data.Text.Replace(gramm, "")) +
-                Convert.ToDouble(tenzo3_Data.Text.Replace(gramm, "")) +
-                Convert.ToDouble(tenzo4_Data.Text.Replace(gramm, ""))
-                ) + gramm;
+            double t1 = double.Parse(tenzo1_Data.Text.Replace(gramm, ""), 
+                                     System.Globalization.CultureInfo.InvariantCulture);
+            double t2 = double.Parse(tenzo2_Data.Text.Replace(gramm, ""),
+                                     System.Globalization.CultureInfo.InvariantCulture);
+            double t3 = double.Parse(tenzo3_Data.Text.Replace(gramm, ""),
+                                     System.Globalization.CultureInfo.InvariantCulture);
+            double t4 = double.Parse(tenzo4_Data.Text.Replace(gramm, ""),
+                                     System.Globalization.CultureInfo.InvariantCulture);
+
+            double sum = t1 + t2 + t3 + t4;
+
+            tenzo_sum.Text = Convert.ToString(sum) + " " + gramm;
         }
 
         private void saveBtn_Click(object sender, EventArgs e)

@@ -18,6 +18,7 @@
 #define Tenzo4 "[HX 711 tenzo4]"
 #define Tenzo5 "[HX 711 tenzo5]"
 #define Pito   "[Pito]"
+#define Pito_Raw   "[Pito Raw]"
 
 /*********/
 

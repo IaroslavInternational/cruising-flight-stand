@@ -75,10 +75,12 @@
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.saveBtn = new FontAwesome.Sharp.IconButton();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.current_Data = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
             this.voltage_Data = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
+            this.current_Data = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.resist_Data_Raw = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
@@ -235,6 +237,8 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.label19);
+            this.panel2.Controls.Add(this.resist_Data_Raw);
             this.panel2.Controls.Add(this.resist_Data);
             this.panel2.Controls.Add(this.pictureBox2);
             this.panel2.Controls.Add(this.iconPictureBox2);
@@ -350,7 +354,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label14.Location = new System.Drawing.Point(429, 169);
+            this.label14.Location = new System.Drawing.Point(429, 170);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(58, 25);
             this.label14.TabIndex = 37;
@@ -360,7 +364,7 @@
             // 
             this.airDensity.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.airDensity.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.airDensity.Location = new System.Drawing.Point(383, 169);
+            this.airDensity.Location = new System.Drawing.Point(383, 170);
             this.airDensity.Name = "airDensity";
             this.airDensity.Size = new System.Drawing.Size(54, 26);
             this.airDensity.TabIndex = 36;
@@ -381,7 +385,7 @@
             // 
             this.kTenzo5.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.kTenzo5.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.kTenzo5.Location = new System.Drawing.Point(495, 138);
+            this.kTenzo5.Location = new System.Drawing.Point(495, 139);
             this.kTenzo5.Name = "kTenzo5";
             this.kTenzo5.Size = new System.Drawing.Size(51, 26);
             this.kTenzo5.TabIndex = 34;
@@ -402,7 +406,7 @@
             // 
             this.kTenzo4.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.kTenzo4.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.kTenzo4.Location = new System.Drawing.Point(495, 109);
+            this.kTenzo4.Location = new System.Drawing.Point(495, 110);
             this.kTenzo4.Name = "kTenzo4";
             this.kTenzo4.Size = new System.Drawing.Size(51, 26);
             this.kTenzo4.TabIndex = 32;
@@ -423,7 +427,7 @@
             // 
             this.kTenzo3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.kTenzo3.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.kTenzo3.Location = new System.Drawing.Point(223, 168);
+            this.kTenzo3.Location = new System.Drawing.Point(223, 169);
             this.kTenzo3.Name = "kTenzo3";
             this.kTenzo3.Size = new System.Drawing.Size(51, 26);
             this.kTenzo3.TabIndex = 30;
@@ -444,7 +448,7 @@
             // 
             this.kTenzo2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.kTenzo2.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.kTenzo2.Location = new System.Drawing.Point(223, 139);
+            this.kTenzo2.Location = new System.Drawing.Point(223, 140);
             this.kTenzo2.Name = "kTenzo2";
             this.kTenzo2.Size = new System.Drawing.Size(51, 26);
             this.kTenzo2.TabIndex = 28;
@@ -465,7 +469,7 @@
             // 
             this.kTenzo1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.kTenzo1.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.kTenzo1.Location = new System.Drawing.Point(223, 110);
+            this.kTenzo1.Location = new System.Drawing.Point(223, 111);
             this.kTenzo1.Name = "kTenzo1";
             this.kTenzo1.Size = new System.Drawing.Size(51, 26);
             this.kTenzo1.TabIndex = 26;
@@ -608,6 +612,27 @@
             this.panel4.Size = new System.Drawing.Size(239, 87);
             this.panel4.TabIndex = 26;
             // 
+            // voltage_Data
+            // 
+            this.voltage_Data.AutoSize = true;
+            this.voltage_Data.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.voltage_Data.Location = new System.Drawing.Point(141, 28);
+            this.voltage_Data.Name = "voltage_Data";
+            this.voltage_Data.Size = new System.Drawing.Size(48, 25);
+            this.voltage_Data.TabIndex = 25;
+            this.voltage_Data.Text = "50 В";
+            // 
+            // label20
+            // 
+            this.label20.AutoEllipsis = true;
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label20.Location = new System.Drawing.Point(8, 28);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(130, 25);
+            this.label20.TabIndex = 26;
+            this.label20.Text = "Напряжение:";
+            // 
             // current_Data
             // 
             this.current_Data.AutoSize = true;
@@ -629,26 +654,26 @@
             this.label21.TabIndex = 24;
             this.label21.Text = "Ток:";
             // 
-            // voltage_Data
+            // resist_Data_Raw
             // 
-            this.voltage_Data.AutoSize = true;
-            this.voltage_Data.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.voltage_Data.Location = new System.Drawing.Point(141, 28);
-            this.voltage_Data.Name = "voltage_Data";
-            this.voltage_Data.Size = new System.Drawing.Size(48, 25);
-            this.voltage_Data.TabIndex = 25;
-            this.voltage_Data.Text = "50 В";
+            this.resist_Data_Raw.AutoSize = true;
+            this.resist_Data_Raw.Font = new System.Drawing.Font("Segoe UI Semilight", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.resist_Data_Raw.Location = new System.Drawing.Point(112, 138);
+            this.resist_Data_Raw.Name = "resist_Data_Raw";
+            this.resist_Data_Raw.Size = new System.Drawing.Size(83, 25);
+            this.resist_Data_Raw.TabIndex = 16;
+            this.resist_Data_Raw.Text = "120 км/ч";
             // 
-            // label20
+            // label19
             // 
-            this.label20.AutoEllipsis = true;
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label20.Location = new System.Drawing.Point(8, 28);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(130, 25);
-            this.label20.TabIndex = 26;
-            this.label20.Text = "Напряжение:";
+            this.label19.AutoEllipsis = true;
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label19.Location = new System.Drawing.Point(47, 138);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(59, 25);
+            this.label19.TabIndex = 26;
+            this.label19.Text = "RAW:";
             // 
             // ManageForm
             // 
@@ -736,5 +761,7 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label current_Data;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label resist_Data_Raw;
     }
 }

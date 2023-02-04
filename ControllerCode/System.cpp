@@ -17,7 +17,8 @@ System::System()
 	tenzo3(HX711_3_CAL_FACTOR),
 	tenzo4(HX711_4_CAL_FACTOR),
 	tenzo5(HX711_5_CAL_FACTOR),
-	vm(V_PIN)
+	vm(V_PIN),
+	pt(ASPD_IN)
 {}
 
 void System::InitiliazeModules()
@@ -29,7 +30,6 @@ void System::InitiliazeModules()
 	tenzo5.Setup(HX711_5_DOUT, HX711_5_CLK);
 
 	amp.Setup();
-	pinMode(ASPD_IN, INPUT);
 }
 
 void System::PreProcess(size_t b_rate, size_t t_out)
@@ -37,15 +37,9 @@ void System::PreProcess(size_t b_rate, size_t t_out)
 	Serial.begin(b_rate);
 	Serial.setTimeout(t_out);
 
-	for (int i = 0; i < 10; i++)
-	{
-		sensorValue = analogRead(ASPD_IN) - 512;
-		sum += sensorValue;
-	}
+	pt.Init();
 
-	offset = sum / 10.0;
-
-	while (true)
+	/*while (true)
 	{
 		if (Serial.available() > 0)
 		{
@@ -58,16 +52,16 @@ void System::PreProcess(size_t b_rate, size_t t_out)
 				break;
 			}
 		}
-	}
+	}*/
 }
 
 void System::ProcessCommands()
 {
 	// Если порт доступен
-	if (Serial.available() > 0)
+/*	if (Serial.available() > 0)
 	{
 		String command = Serial.readString();
-	}
+	}*/
 }
 
 void System::Tick()
@@ -80,6 +74,7 @@ void System::Tick()
 	cData[current_time]    = amp.GetVoltage();
 
 	current_t_time = current_t_time + DELAY_TIME;
+    current_time = current_time + DELAY_TIME;
 
 	if (current_time == C_DELAY)
 	{
@@ -90,25 +85,19 @@ void System::Tick()
 
 	if (current_t_time == T_DELAY)
 	{
+		tenzo1.Process(Tenzo1, t1Data);
 		tenzo2.Process(Tenzo2, t2Data);
 		tenzo3.Process(Tenzo3, t3Data);
-		tenzo1.Process(Tenzo1, t1Data);
 		tenzo4.Process(Tenzo4, t4Data);
 		tenzo5.Process(Tenzo5, t5Data);
 
 		current_t_time = 0;
 	}
 
-	sensorValue = analogRead(ASPD_IN) - offset;
-	Vout = (5 * sensorValue) / 1024.0;
-	P = Vout - 2.5;
-
-	Serial.print(Pito);
-	Serial.print("|");
-	Serial.print(P * 1000.0f);
-	Serial.println("\n");
-
 	vm.Process(V_DATA);
+
+	pt.Process(Pito);
+	pt.Process(Pito_Raw);
 }
 
 /* end System stuff */
@@ -159,6 +148,42 @@ void hx711_adc::SetKoef(float koef)
 }
 
 /* end HX 711 stuff */
+
+/*   pito stuff   */
+
+pito::pito(uint8_t pin)
+{
+	pinMode(pin, INPUT);
+}
+
+void pito::Process(String header)
+{
+	sensorValue = analogRead(pin) - offset;
+	Vout = (5 * sensorValue) / 1024.0;
+	P = Vout - 2.5;
+
+	if (header == Pito)
+	{
+		SpecialFunctions::SendData(header, (String)P);
+	}
+	else if (header == Pito_Raw)
+	{
+		SpecialFunctions::SendData(header, (String)(analogRead(pin)));
+	}
+}
+
+void pito::Init()
+{
+	for (int i = 0; i < 10; i++)
+	{
+		sensorValue = analogRead(pin) - 512;
+		sum += sensorValue;
+	}
+
+	offset = sum / 10.0;
+}
+
+/* end pito stuff */
 
 /*   voltmeter stuff   */
 

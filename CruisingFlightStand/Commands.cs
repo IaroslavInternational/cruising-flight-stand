@@ -17,12 +17,13 @@ namespace CruisingFlightStand
             public const string tenzo2 = "[HX 711 tenzo2]";  // Давление на тензодатчике 2
             public const string tenzo3 = "[HX 711 tenzo3]";  // Давление на тензодатчике 3
             public const string tenzo4 = "[HX 711 tenzo4]";  // Давление на тензодатчике 4
-            public const string tenzo5 = "[HX 711 tenzo4]";  // Давление на тензодатчике 5
+            public const string tenzo5 = "[HX 711 tenzo5]";  // Давление на тензодатчике 5
         }
 
         public struct Pito
         {
             public const string pito = "[Pito]";  // Давление в трубке Пито
+            public const string pito_raw = "[Pito Raw]";  // Давление в трубке Пито
         }
 
         public struct Sensors
