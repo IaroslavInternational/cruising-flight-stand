@@ -57,6 +57,11 @@ namespace CruisingFlightStand
             return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
         }
 
+        public static double Map(double x, double in_min, double in_max, double out_min, double out_max)
+        {
+            return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+        }
+
         public static string ProcessValue(string val, double koef)
         {
             return Convert.ToString((double.Parse(val, System.Globalization.CultureInfo.InvariantCulture) * koef));
@@ -65,6 +70,11 @@ namespace CruisingFlightStand
         public static string ProcessTenzoValue(string val, double koef)
         {
             return Convert.ToString((int)(double.Parse(val, System.Globalization.CultureInfo.InvariantCulture) * koef));
+        }
+
+        public static double ConvertToUniformDouble(string val) 
+        {
+            return double.Parse(val, System.Globalization.CultureInfo.InvariantCulture);
         }
     }
 }

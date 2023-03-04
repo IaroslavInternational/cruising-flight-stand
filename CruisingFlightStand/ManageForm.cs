@@ -61,6 +61,9 @@ namespace CruisingFlightStand
         private delegate void AmpSetter(string val);
         private AmpSetter SetAmp;
 
+        private delegate void RawAmpSetter(string val);
+        private RawAmpSetter SetRawAmp;
+
         public ManageForm()
         {
             InitializeComponent();
@@ -154,66 +157,59 @@ namespace CruisingFlightStand
 
         private void SetNewPitoVal(string val)
         {
-            double P = Convert.ToDouble(val);
-            double speed = Math.Pow((P / 1.8 * data.AirDensity), 0.5);
+            double P = Commands.ConvertToUniformDouble(val);
+            double speed = Math.Pow(((P * 1000.0) / Convert.ToDouble(airDensity.Text)), 0.5);
+            
+            speed *= 3.6;
 
-            resist_Data.Text = speed + " " + kmh;
-            //resist_Data.Text = P + " " + kmh;
+            speed = Math.Round(speed, 2);
+
+            speed *= Math.Round(Commands.ConvertToUniformDouble(speed_Koef.Text), 2);
+
+            resist_Data.Text = Math.Round(Math.Round(speed, 2) / 100.0, 2) + " " + kmh;
         }
 
         private void SetNewPitoRawVal(string val)
-        {
-            resist_Data_Raw.Text = val;
+        {            
+            resist_Data_Raw.Text = val.Replace(".", ",");
         }
 
         private void SetNewTenzoVal(string val, int id)
         {
-            switch(id)
-            {
-                /*case 1: 
-                    tenzo1_Data.Text = Commands.ProcessTenzoValue(val, Convert.ToDouble(kTenzo1.Text)) + " " + gramm;
-                    break;
-                case 2:
-                    tenzo2_Data.Text = Commands.ProcessTenzoValue(val, Convert.ToDouble(kTenzo2.Text)) + " " + gramm;
-                    break;
-                case 3:
-                    tenzo3_Data.Text = Commands.ProcessTenzoValue(val, Convert.ToDouble(kTenzo3.Text)) + " " + gramm;
-                    break;
-                case 4:
-                    tenzo4_Data.Text = Commands.ProcessTenzoValue(val, Convert.ToDouble(kTenzo4.Text)) + " " + gramm;
-                    break;
-                case 5:
-                    tenzo5_Data.Text = Commands.ProcessTenzoValue(val, Convert.ToDouble(kTenzo5.Text)) + " " + gramm;
-                    tenzo5_DataMain.Text = Commands.ProcessTenzoValue(val, Convert.ToDouble(kTenzo5.Text)) + " " + gramm;
-                    break;*/
+            //val = val.Replace(".", ",");
+            double v = Commands.ConvertToUniformDouble(val);
 
+            switch (id)
+            {            
                 case 1:
-                    tenzo1_Data.Text = val + " " + gramm;
+                    tenzo1_Data.Text = Math.Round(Math.Round(Math.Round(v, 2) * Math.Round(Commands.ConvertToUniformDouble(kTenzo1.Text.Replace(",", ".")), 2), 2) / 10.0, 2) + " " + gramm;
                     break;
                 case 2:
-                    tenzo2_Data.Text = val + " " + gramm;
+                    tenzo2_Data.Text = Math.Round(Math.Round(Math.Round(v, 2) * Math.Round(Commands.ConvertToUniformDouble(kTenzo2.Text.Replace(",", ".")), 2), 2) / 10.0, 2) + " " + gramm;
                     break;
                 case 3:
-                    tenzo3_Data.Text = val + " " + gramm;
+                    tenzo3_Data.Text = Math.Round(Math.Round(Math.Round(v, 2) * Math.Round(Commands.ConvertToUniformDouble(kTenzo3.Text.Replace(",", ".")), 2), 2) / 10.0, 2) + " " + gramm;
                     break;
                 case 4:
-                    tenzo4_Data.Text = val + " " + gramm;
+                    tenzo4_Data.Text = Math.Round(Math.Round(Math.Round(v, 2) * Math.Round(Commands.ConvertToUniformDouble(kTenzo4.Text.Replace(",", ".")), 2), 2) / 10.0, 2) + " " + gramm;
                     break;
                 case 5:
-                    tenzo5_Data.Text = val + " " + gramm;
-                    tenzo5_DataMain.Text = val + " " + gramm;
+                    tenzo5_Data.Text = Math.Round(Math.Round(Math.Round(v, 2) * Math.Round(Commands.ConvertToUniformDouble(kTenzo5.Text.Replace(",", ".")), 2), 2) / 10.0, 2) + " " + gramm;
+                    tenzo5_DataMain.Text = tenzo5_Data.Text;
                     break;
             }
         }
 
         private void SetNewVoltVal(string val)
         {
-            voltage_Data.Text = val + " В";
+            voltage_Data.Text = Math.Round(Commands.Map(Commands.ConvertToUniformDouble(val), 0.0, 1023.0, 0.0, 50.0) *
+               Commands.ConvertToUniformDouble(voltage_Koef.Text), 2) + " В";
         }
-
+        
         private void SetNewAmpVal(string val)
         {
-            current_Data.Text = val + " А";
+            current_Data.Text = Math.Round(Commands.ConvertToUniformDouble(val) *
+                Commands.ConvertToUniformDouble(current_Koef.Text), 2) + " А";
         }
 
         private void serialPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
@@ -295,6 +291,7 @@ namespace CruisingFlightStand
                         AddLog("S"    + logSplitter + tenzo_sum.Text.Replace(gramm, "")   + logSplitter);
                         AddLog("A"    + logSplitter + current_Data.Text.Replace("A", "")  + logSplitter);
                         AddLog("V"    + logSplitter + voltage_Data.Text.Replace("В", "")  + logSplitter);
+                        AddLog("P"    + logSplitter + power_Data.Text.Replace("Вт", "")   + logSplitter);
                         AddLog("Pito" + logSplitter + resist_Data.Text.Replace(kmh, "")   + logSplitter + "\n");
                     }
                 }
@@ -358,18 +355,27 @@ namespace CruisingFlightStand
 
         private void mainTimer_Tick(object sender, EventArgs e)
         {
-            double t1 = double.Parse(tenzo1_Data.Text.Replace(gramm, ""), 
-                                     System.Globalization.CultureInfo.InvariantCulture);
-            double t2 = double.Parse(tenzo2_Data.Text.Replace(gramm, ""),
-                                     System.Globalization.CultureInfo.InvariantCulture);
-            double t3 = double.Parse(tenzo3_Data.Text.Replace(gramm, ""),
-                                     System.Globalization.CultureInfo.InvariantCulture);
-            double t4 = double.Parse(tenzo4_Data.Text.Replace(gramm, ""),
-                                     System.Globalization.CultureInfo.InvariantCulture);
+            double t1 = Convert.ToDouble(tenzo1_Data.Text.Replace(gramm, ""));
+            double t2 = Convert.ToDouble(tenzo2_Data.Text.Replace(gramm, ""));
+            double t3 = Convert.ToDouble(tenzo3_Data.Text.Replace(gramm, ""));                                     
+            double t4 = Convert.ToDouble(tenzo4_Data.Text.Replace(gramm, ""));
+            
+            double ofs = Convert.ToDouble(offset.Text);
 
-            double sum = t1 + t2 + t3 + t4;
+            string v = voltage_Data.Text.Replace("В", "");
+            string a = current_Data.Text.Replace("А", "");
 
-            tenzo_sum.Text = Convert.ToString(sum) + " " + gramm;
+            double volt = Convert.ToDouble(v);
+            double amp = Convert.ToDouble(a);
+
+            double sum = t1 + t2 + t3 + t4 + (ofs * 1000.0);
+
+            double power = volt * amp;
+
+            power = Math.Round(power, 2);
+
+            tenzo_sum.Text  = Convert.ToString(sum) + " " + gramm;
+            power_Data.Text = Convert.ToString(power) + " Вт";
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
@@ -378,12 +384,12 @@ namespace CruisingFlightStand
 
             dataSave.PortName = data.PortName;
             dataSave.BaudRate = data.BaudRate;
-            dataSave.AirDensity = Convert.ToDouble(airDensity.Text);
-            dataSave.KT1 = Convert.ToDouble(kTenzo1.Text);
-            dataSave.KT2 = Convert.ToDouble(kTenzo2.Text);
-            dataSave.KT3 = Convert.ToDouble(kTenzo3.Text);
-            dataSave.KT4 = Convert.ToDouble(kTenzo4.Text);
-            dataSave.KT5 = Convert.ToDouble(kTenzo5.Text);
+            dataSave.AirDensity = Commands.ConvertToUniformDouble(airDensity.Text);
+            dataSave.KT1 = Commands.ConvertToUniformDouble(kTenzo1.Text);
+            dataSave.KT2 = Commands.ConvertToUniformDouble(kTenzo2.Text);
+            dataSave.KT3 = Commands.ConvertToUniformDouble(kTenzo3.Text);
+            dataSave.KT4 = Commands.ConvertToUniformDouble(kTenzo4.Text);
+            dataSave.KT5 = Commands.ConvertToUniformDouble(kTenzo5.Text);
 
             string json = JsonConvert.SerializeObject(dataSave);
 
