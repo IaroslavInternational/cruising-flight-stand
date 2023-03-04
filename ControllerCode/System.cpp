@@ -19,7 +19,8 @@ System::System()
 	tenzo5(HX711_5_CAL_FACTOR),
 	vm(V_PIN),
 	pt(ASPD_IN)
-{}
+{
+}
 
 void System::InitiliazeModules()
 {
@@ -158,7 +159,7 @@ pito::pito(uint8_t pin)
 
 void pito::Process(String header)
 {
-	sensorValue = analogRead(pin) - offset;
+	sensorValue = analogRead(A0) - offset;
 	Vout = (5 * sensorValue) / 1024.0;
 	P = Vout - 2.5;
 
@@ -168,7 +169,7 @@ void pito::Process(String header)
 	}
 	else if (header == Pito_Raw)
 	{
-		SpecialFunctions::SendData(header, (String)(analogRead(pin)));
+		SpecialFunctions::SendData(header, (String)(analogRead(A0)));
 	}
 }
 
@@ -176,7 +177,7 @@ void pito::Init()
 {
 	for (int i = 0; i < 10; i++)
 	{
-		sensorValue = analogRead(pin) - 512;
+		sensorValue = analogRead(A0) - 512;
 		sum += sensorValue;
 	}
 
@@ -189,12 +190,12 @@ void pito::Init()
 
 voltmeter::voltmeter(uint8_t pin)
 {
-	pinMode(pin, INPUT);
+	pinMode(A1, INPUT);
 }
 
 void voltmeter::Process(String header)
 {
-	SpecialFunctions::SendData(header, (String)map(analogRead(this->pin), 0, 1023, 0, MAX_V));
+	SpecialFunctions::SendData(header, (String)analogRead(A1));
 }
 
 /* end voltmeter stuff */
